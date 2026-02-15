@@ -1,0 +1,27 @@
+{
+  "cli_version": "0.4.2",
+  "checkpoint_id": "2b9ee08c872c",
+  "strategy": "manual-commit",
+  "branch": "haleshot/entire-session-search",
+  "checkpoints_count": 1,
+  "files_touched": [
+    "examples/entire_session_search/.env",
+    "examples/entire_session_search/README.md"
+  ],
+  "sessions": [
+    {
+      "metadata": "/2b/9ee08c872c/0/metadata.json",
+      "transcript": "/2b/9ee08c872c/0/full.jsonl",
+      "context": "/2b/9ee08c872c/0/context.md",
+      "content_hash": "/2b/9ee08c872c/0/content_hash.txt",
+      "prompt": "/2b/9ee08c872c/0/prompt.txt"
+    }
+  ],
+  "token_usage": {
+    "input_tokens": 895,
+    "cache_creation_tokens": 135595,
+    "cache_read_tokens": 4965971,
+    "output_tokens": 8541,
+    "api_call_count": 74
+  }
+}
