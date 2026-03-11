@@ -35,7 +35,7 @@ jobs:
       - name: Generate THIRD_PARTY_NOTICES.html
         run: cargo about generate -o THIRD_PARTY_NOTICES.html about.hbs
       - name: Upload THIRD_PARTY_NOTICES.html artifact
-        uses: actions/upload-artifact@v6
+        uses: actions/upload-artifact@v7
         with:
           name: THIRD_PARTY_NOTICES.html
           path: THIRD_PARTY_NOTICES.html
@@ -110,7 +110,7 @@ jobs:
       - uses: actions/checkout@v6
         with:
           fetch-depth: 1
-      - uses: actions/download-artifact@v7
+      - uses: actions/download-artifact@v8
         with:
           name: THIRD_PARTY_NOTICES.html
       - name: Remove .python-version if exists
@@ -134,7 +134,7 @@ jobs:
           manylinux: auto
           container: ${{ matrix.platform.container }}
       - name: Upload wheels
-        uses: actions/upload-artifact@v6
+        uses: actions/upload-artifact@v7
         with:
           name: wheels-${{ matrix.platform.os }}-${{ matrix.platform.target }}${{ matrix.platform.free-threaded && '-freethreaded' || '' }}
           path: dist
@@ -146,7 +146,7 @@ jobs:
       matrix:
         py: ["3.11", "3.12", "3.13", "3.14"]
     steps:
-      - uses: actions/download-artifact@v7
+      - uses: actions/download-artifact@v8
         with:
           name: wheels-linux-x86_64
       - uses: actions/setup-python@v6
@@ -160,7 +160,7 @@ jobs:
     runs-on: ubuntu-24.04
     needs: build
     steps:
-      - uses: actions/download-artifact@v7
+      - uses: actions/download-artifact@v8
         with:
           name: wheels-linux-x86_64-freethreaded
       - uses: actions/setup-python@v6
@@ -186,7 +186,7 @@ jobs:
         with:
           python-version: 3.13
       - run: python ./.github/scripts/update_version.py
-      - uses: actions/download-artifact@v7
+      - uses: actions/download-artifact@v8
         with:
           name: THIRD_PARTY_NOTICES.html
       - name: Build sdist
@@ -195,7 +195,7 @@ jobs:
           command: sdist
           args: --out dist
       - name: Upload sdist
-        uses: actions/upload-artifact@v6
+        uses: actions/upload-artifact@v7
         with:
           name: wheels-sdist
           path: dist
@@ -221,14 +221,14 @@ jobs:
         with:
           python-version: 3.13
       - run: python ./.github/scripts/update_version.py
-      - uses: actions/download-artifact@v7
+      - uses: actions/download-artifact@v8
         with:
           name: THIRD_PARTY_NOTICES.html
-      - uses: actions/download-artifact@v7
+      - uses: actions/download-artifact@v8
         with:
           pattern: wheels-*
       - name: Generate artifact attestation
-        uses: actions/attest-build-provenance@v3
+        uses: actions/attest-build-provenance@v4
         with:
           subject-path: 'wheels-*/*'
       - name: Publish to PyPI
